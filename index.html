@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+  <title>It Generates a dummy password to copy and paste Uses Local Storage</title>
+
+  <style>
+
+    body{
+    background-image:url("https://imgur.com/GlNSOnO");
+    margin-top:0px;
+    margin-left:5rem;
+    margin-bottom:5rem;
+    margin-right:5rem;
+    width: 90%; 
+    max-width: 940px;
+  color: rgba(8, 8, 8, 0.9);
+  font-size:16px;
+  font-family: 'Roboto', 'Open-sans';
+
+    }
+.tooltip {
+  position: relative;
+  /* display: inline-block; */
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 140px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -75px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+    section{
+      background-color:#f8f5f0;
+      padding:2rem;
+      margin-top:5rem;
+    }
+    button{
+    margin-top:3rem;
+    background-color:rgba(173, 215, 174, 0.9);
+    border:2px solid rgba(65, 162, 60, 0.8);
+    border-radius:4px;
+    padding:8px;
+    transition:all .4s;
+    }
+
+    button:hover{
+     border-color:rgba(88, 218, 92, 0.9);
+    background-color:rgba(88, 218, 92, 0.9);
+    border-radius:8px;
+    }
+
+    h1{margin-top:0px;
+    margin-bottom:0px;
+        background-color:#f8f5f0;
+      padding:2rem;}
+
+    p{
+      background-color:rgba(251,251,251,0.9);
+      margin-top:32px;
+    margin-left:5px;
+    margin-bottom:0px;}
+
+
+
+</style>
+
+  <!-- <script type="text/javascript" src="http://livejs.com/live.js"></script> -->
+
+</head>
+<body>
+  
+  <h1>Utility to store quick access passwords in a webpage's local storage</h1>
+  <p>Mostly just for me but if you find it you can use it </p>
+
+<!-- <Section id="mainoutput">
+ Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet dolorem tempora ratione laborum aliquam repellendus, maiores consectetur. Ipsum eligendi debitis sit praesentium quidem sunt corporis. Aliquid magni non molestias modi?
+ 
+ <br><br><br>
+
+</Section>
+  <button id="pw1"> genpw1 </button>
+  
+
+<Section id="secondaryoutput">
+ Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet dolorem tempora ratione laborum aliquam repellendus, maiores consectetur. Ipsum eligendi debitis sit praesentium quidem sunt corporis. Aliquid magni non molestias modi?
+
+<br><br><br>
+
+</Section>
+  <button id="pw2"> genpw2  </button> -->
+
+<Section>
+  <h1>Local Storage 1 Group</h1>
+<p id="localStorageOutput1" class="tooltip">output here <span class="tooltiptext">Copy To Clipboard</span></p>
+<button id="pw2LSGen1"> LS Generate </button>
+<button id="pw1LS1"> LS Set </button>
+<button id="pw1LS2"> LS Delete </button>
+<button id="pw1LS3"> LS Check </button>
+</Section>
+
+
+<Section>
+  <h1>Local Storage 2 Group</h1>
+<p id="localStorageOutput2" class="tooltip">output here<span class="tooltiptext">Copy To Clipboard</span></p>
+
+<button id="pw2LSGen2"> LS Generate </button>
+<button id="pw2LS1"> LS Set </button>
+<button id="pw2LS2"> LS Delete </button>
+<button id="pw2LS3"> LS Check </button>
+</Section>
+
+<button id="checkLocal"> checkLocal</button>
+
+
+<script src="pw1.js"></script>
+<script src="pw2.js"></script>
+
+<script>
+
+
+
+let checkLocalbtn = document.getElementById('checkLocal')
+checkLocalbtn.addEventListener("click", () => {
+	console.log(localStorage)
+  let ask = localStorage.getItem('pw2');
+  console.log(ask)
+});
+
+// let main1 = document.getElementById('mainoutput');
+// let main2 = document.getElementById('secondaryoutput');
+
+
+// let btn1 = document.getElementById('pw1');
+// let btn2 = document.getElementById('pw2');
+
+
+
+// main1.innerHTML = passwordGenerator(8)
+// main2.innerHTML = createPassword(8)
+
+// btn1.addEventListener("click", () => {
+// 	main1.innerHTML = passwordGenerator(8)
+// });
+// btn2.addEventListener("click", () => {
+// 	main2.innerHTML = createPassword(8)
+
+// });
+
+let tt1 = document.querySelector('.tooltiptext')
+let tt2 = document.querySelector('.tooltiptext')
+let ls1Generate = document.getElementById('pw2LSGen1')
+let ls1SetStore = document.getElementById('pw1LS1');
+let ls1SetDel = document.getElementById('pw1LS2');
+let ls1Chk = document.getElementById('pw1LS3');
+let lsOutput1 = document.getElementById('localStorageOutput1');
+
+
+let ls2Generate = document.getElementById('pw2LSGen2')
+let ls2SetStore = document.getElementById('pw2LS1');
+let ls2SetDel = document.getElementById('pw2LS2');
+let ls2Chk = document.getElementById('pw2LS3');
+let lsOutput2 = document.getElementById('localStorageOutput2');
+
+
+//set 1
+
+lsOutput1.addEventListener("click",function(e){navigator.clipboard.writeText(lsOutput1.innerHTML);
+tt1.innerHTML='copied'
+})
+
+
+  ls1Generate.addEventListener("click", () => {
+  let lsOutput1pw = passwordGenerator(12);
+
+    lsOutput1.innerHTML = lsOutput1pw;
+    
+  });
+
+  ls1SetStore.addEventListener("click", () => {
+    localStorage.pw1 = lsOutput1;
+    localStorage.pw1 = {}
+    let lsOutput1pw = lsOutput1.innerHTML;
+    localStorage.setItem('pw1', `${lsOutput1pw}`);
+  });
+
+  ls1SetDel.addEventListener("click", () => {
+    localStorage.removeItem("pw1")
+  });
+
+  ls1Chk.addEventListener("click",()=>{
+  lsOutput1.innerHTML=localStorage.pw1
+  });
+
+
+//set 2
+
+lsOutput2.addEventListener("click",function(e){navigator.clipboard.writeText(lsOutput2.innerHTML)
+let tt2 = document.querySelector('.tooltiptext');})
+
+ls2Generate.addEventListener("click",() =>{
+
+let lsOutput2pw = createPassword(12)
+   lsOutput2.innerHTML = lsOutput2pw;
+});
+
+ls2SetStore.addEventListener("click",() =>{
+  localStorage.pw2 = {}
+let lsOutput2pw = lsOutput2.innerHTML;
+  localStorage.setItem('pw2', `${lsOutput2pw}`);
+});
+
+ls2SetDel.addEventListener("click",() =>{
+  localStorage.removeItem("pw2")
+});
+
+ls2Chk.addEventListener("click",()=>{
+lsOutput2.innerHTML=localStorage.pw2
+
+});
+
+
+
+
+
+
+
+ </script>
+
+</body>
+</html>
